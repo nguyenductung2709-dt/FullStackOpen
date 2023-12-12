@@ -7,6 +7,12 @@ const Button = ({ handleClick, text }) => (
 )
 
 const Statistics = ({ good, neutral, bad, total, score}) => {
+  if (total == 0) {
+    return (
+      <p> No feedback given </p>
+    )
+  }
+  else {
   return (
     <>
     <p> good {good} </p>
@@ -17,6 +23,7 @@ const Statistics = ({ good, neutral, bad, total, score}) => {
     <p> positive {(good/total)*100} % </p>
     </>
   )
+  }
 }
 
 
