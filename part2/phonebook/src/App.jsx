@@ -1,3 +1,4 @@
+import personsService from './services/persons'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import PersonForm from './components/PersonForm'
@@ -12,11 +13,11 @@ const App = () => {
 
   useEffect(() => {
     console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
+    personsService
+      .getAll()
+      .then(initialPersons => {
         console.log('promise fulfilled')
-        setPersons(response.data)
+        setPersons(initialPersons)
       })
   }, [])
 
@@ -33,10 +34,10 @@ const App = () => {
       number: newNumber,
       id: persons.length + 1,
     }
-    axios
-    .post('http://localhost:3001/persons', noteObject)
-    .then(response => {
-      setPersons(persons.concat(response.data))
+    personsService
+    .create(noteObject)
+    .then(returnedPersons => {
+      setPersons(persons.concat(returnedPersons))
       setNewName('')
       setNewNumber('')
     })
