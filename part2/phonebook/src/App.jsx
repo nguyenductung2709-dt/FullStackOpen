@@ -5,7 +5,7 @@ import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 import Persons from './components/Persons'
 import NameNotification from './components/nameNotification'
-
+import ErrorNotification from './components/errorNotification'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
@@ -13,7 +13,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [newText, setNewText] = useState('')
   const [addedMessage, setAddedMessage] = useState(null)
-
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     console.log('effect')
@@ -52,7 +52,12 @@ const App = () => {
             }, 2000)
           })
           .catch(error => {
-            console.error('Update failed:', error);
+            setErrorMessage(
+              `Information of ${changedPerson.name} has already been removed from server`
+            )
+            setTimeout(() => {
+              setErrorMessage(null)
+            }, 2000)
           });
       }
     }
@@ -109,6 +114,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <NameNotification message={addedMessage} />
+      <ErrorNotification message={errorMessage} />
       <Filter
         newText = {newText}
         handleNewText={handleNewText} 

@@ -1,13 +1,13 @@
-const NameNotification = ({ message }) => {
+const ErrorNotification = ({ message }) => {
     if (message === null) {
       return null
     }
   
     return (
-      <div className="added">
+      <div className="error">
         {message}
       </div>
     )
   }
   
-  export default NameNotification
+  export default ErrorNotification
