@@ -4,12 +4,16 @@ import axios from 'axios'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 import Persons from './components/Persons'
+import NameNotification from './components/nameNotification'
+
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newText, setNewText] = useState('')
+  const [addedMessage, setAddedMessage] = useState(null)
+
 
   useEffect(() => {
     console.log('effect')
@@ -30,14 +34,26 @@ const App = () => {
       const message = `${newName} is already added to phonebook, replace the old number with a new one`;
       const confirmed = window.confirm(`${message}`);
       if (confirmed) {
-        const changedPerson = {...existingPerson, number: `${newNumber}`}
+        const changedPerson = { ...existingPerson, number: newNumber }; // Update the number
         personsService
-        .update(idOfExisted, changedPerson)
-        .then(returnedPerson => {
-          setPersons(persons.map(person => person.id !== idOfExisted ? changedPerson : returnedPerson))
-          setNewName('')
-          setNewNumber('')
-        })
+          .update(idOfExisted, changedPerson)
+          .then(() => {
+            const updatedPersons = persons.map(person =>
+              person.id !== idOfExisted ? person : changedPerson
+            );
+            setPersons(updatedPersons);
+            setNewName('');
+            setNewNumber('');
+            setAddedMessage(
+              `Changed ${changedPerson.name}'s number`
+            )
+            setTimeout(() => {
+              setAddedMessage(null)
+            }, 2000)
+          })
+          .catch(error => {
+            console.error('Update failed:', error);
+          });
       }
     }
     else {
@@ -52,6 +68,12 @@ const App = () => {
       setPersons(persons.concat(returnedPersons))
       setNewName('')
       setNewNumber('')
+      setAddedMessage(
+        `Added ${noteObject.name}`
+      )
+      setTimeout(() => {
+        setAddedMessage(null)
+      }, 2000)
     })
   }
   }
@@ -86,6 +108,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <NameNotification message={addedMessage} />
       <Filter
         newText = {newText}
         handleNewText={handleNewText} 
