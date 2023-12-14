@@ -44,7 +44,13 @@ const App = () => {
   }
   }
 
-
+  const deletePerson = id => {
+    const url = `http://localhost:3001/persons/${id}`
+    personsService.eliminate(url).then(() => {
+      const updatedPersons = persons.filter((person) => person.id !== id);
+      setPersons(updatedPersons);
+    })
+  }
 
   const filteredPersons = persons.filter((person) =>
     person.name.toLowerCase().includes(newText.toLowerCase())
@@ -79,6 +85,7 @@ const App = () => {
       />
       <h3>Numbers</h3>
       <Persons
+        deletePerson = {deletePerson}
         filteredPersons = {filteredPersons}
         />
     </div>
