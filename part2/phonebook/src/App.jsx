@@ -44,12 +44,15 @@ const App = () => {
   }
   }
 
-  const deletePerson = id => {
+  const deletePerson = (name, id) => {
+    const confirmed = window.confirm(`Delete ${name} ?`);
+    if (confirmed){
     const url = `http://localhost:3001/persons/${id}`
     personsService.eliminate(url).then(() => {
       const updatedPersons = persons.filter((person) => person.id !== id);
       setPersons(updatedPersons);
     })
+  }
   }
 
   const filteredPersons = persons.filter((person) =>
