@@ -5,13 +5,7 @@ import Filter from './components/Filter'
 import Persons from './components/Persons'
 
 const App = () => {
-  const details = [
-    { id : 1,
-      name: 'Arto Hellas', 
-      number: '040-123456'
-    },
-  ]
-  const [persons, setPersons] = useState(details) 
+  const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newText, setNewText] = useState('')
@@ -35,15 +29,21 @@ const App = () => {
     }
     else {
     const noteObject = {
-      id : details.length + 1,
       name: newName,
-      number: newNumber 
+      number: newNumber,
+      id: persons.length + 1,
     }
-    setPersons(details.concat(noteObject))
-    setNewName('')
-    setNewNumber('')
+    axios
+    .post('http://localhost:3001/persons', noteObject)
+    .then(response => {
+      setPersons(persons.concat(response.data))
+      setNewName('')
+      setNewNumber('')
+    })
   }
   }
+
+
 
   const filteredPersons = persons.filter((person) =>
     person.name.toLowerCase().includes(newText.toLowerCase())
