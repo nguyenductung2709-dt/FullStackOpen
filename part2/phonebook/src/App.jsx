@@ -25,8 +25,20 @@ const App = () => {
     event.preventDefault()
     const isNameExists = persons.some(person => person.name === newName);
     if (isNameExists) {
-      const message = `${newName} is already added to phonebook`;
-      alert(message);
+      const existingPerson = persons.find(person => person.name == newName);
+      const idOfExisted = existingPerson.id;
+      const message = `${newName} is already added to phonebook, replace the old number with a new one`;
+      const confirmed = window.confirm(`${message}`);
+      if (confirmed) {
+        const changedPerson = {...existingPerson, number: `${newNumber}`}
+        personsService
+        .update(idOfExisted, changedPerson)
+        .then(returnedPerson => {
+          setPersons(persons.map(person => person.id !== idOfExisted ? changedPerson : returnedPerson))
+          setNewName('')
+          setNewNumber('')
+        })
+      }
     }
     else {
     const noteObject = {
