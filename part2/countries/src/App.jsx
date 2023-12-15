@@ -4,9 +4,11 @@ import axios from 'axios';
 const App = () => {
   const [newText, setNewText] = useState('');
   const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState(null); 
 
   const handleNewText = (event) => {
     setNewText(event.target.value);
+    setSelectedCountry(null); 
   };
 
   useEffect(() => {
@@ -26,32 +28,39 @@ const App = () => {
     country.name.common.toLowerCase().includes(newText.toLowerCase())
   );
 
+  const showCountry = (country) => {
+    setSelectedCountry(country); // Set the selected country when the button is clicked
+  };
+
   return (
     <>
       <p>
         find countries{' '}
         <input value={newText} onChange={handleNewText} />
       </p>
-      {filteredCountries.length > 10 ? (
+      {selectedCountry ? (
+        <div>
+          <h1>{selectedCountry.name.common}</h1>
+          <p>capital {selectedCountry.capital}</p>
+          <p>area {selectedCountry?.area}</p>
+          <p>
+            <strong>languages</strong>
+          </p>
+          <ul>
+            {Object.values(selectedCountry?.languages || {}).map((language, index) => (
+              <li key={index}>{language}</li>
+            ))}
+          </ul>
+          <img src={selectedCountry.flags.png} alt={selectedCountry.name.common} />
+        </div>
+      ) : filteredCountries.length > 10 ? (
         <p>Too many matches, specify another filter</p>
-      ) : filteredCountries.length === 1 ? (
-        filteredCountries.map((country, index) => (
-          <div key={index}>
-            <h1>{country.name.common}</h1>
-            <p>capital {country.capital}</p>
-            <p>area {country?.area}</p>
-            <p><strong>languages</strong></p>
-            <ul>
-              {Object.values(country?.languages || {}).map((language, index) => (
-                <li key={index}>{language}</li>
-              ))}
-            </ul>
-            <img src = {country.flags.png} />
-          </div>
-        ))
       ) : (
         filteredCountries.map((country, index) => (
-          <p key={index}>{country.name.common}</p>
+          <div key={index}>
+            <p>{country.name.common}</p>
+            <button onClick={() => showCountry(country)}>Show</button>
+          </div>
         ))
       )}
     </>
