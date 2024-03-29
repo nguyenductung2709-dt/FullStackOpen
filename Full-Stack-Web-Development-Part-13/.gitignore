@@ -1,0 +1,6 @@
+node_modules
+.env
+key.md
+queries.md
+config.js
+test_http

@@ -1,0 +1,7 @@
+//backend
+docker compose -f docker-compose.dev.yml up
+REDIS_URL=redis://localhost:6379 MONGO_URL=mongodb://the_username:the_password@localhost:3456/the_database npm run dev
+
+//frontend
+docker build . -t todo-frontend
+docker run -p 8000:80 todo-frontend

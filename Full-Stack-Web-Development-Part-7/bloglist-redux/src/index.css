@@ -1,0 +1,22 @@
+.error {
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.nav-link:hover {
+  background: pink;
+}
+
+.h1blogapp {
+  font-family: 'Times New Roman';
+  padding-top: 20px;
+  text-align: center;
+}
+
+body{
+  font-family:'Times New Roman', Times, serif
+}

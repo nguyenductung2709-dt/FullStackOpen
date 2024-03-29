@@ -1,0 +1,1 @@
+- Install sequelize, express, dotenv, postgres (quite similar to mongoose): npm install express dotenv pg sequelize

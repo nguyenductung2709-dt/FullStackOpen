@@ -1,0 +1,28 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "author": "Tung",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "@graphql-tools/schema": "^10.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "graphql": "^16.8.1",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.14.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.1",
+    "mongoose-unique-validator": "^4.0.0",
+    "uuid": "^9.0.1",
+    "ws": "^8.16.0"
+  }
+}

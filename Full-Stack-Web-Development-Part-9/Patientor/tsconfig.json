@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // tell the compiler which EMCAScript to use, here we use ES6
+    "outDir": "./build/", //tell where the compiled code should be placed
+    "module": "commonjs", // use CommonJS module in the compiled code => we can use require syntax
+    "strict": true, // follow TypeScript strictly including type declarations
+    "noUnusedLocals": true, // prevent unused local variables
+    "noUnusedParameters": true, // throw errors when unused variables are written
+    "noImplicitReturns": true, //ensure all paths return value
+    "noFallthroughCasesInSwitch": true, //ensures that, in a switch case, each case ends either with a return or a break statement
+    "esModuleInterop": true // allows interoperability between CommonJS and ES Modules
+  },
+}

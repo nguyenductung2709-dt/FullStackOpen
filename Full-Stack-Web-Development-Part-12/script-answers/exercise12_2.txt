@@ -1,0 +1,16 @@
+Script started on Mon Mar  4 17:52:51 2024
+[1m[7m%[27m[1m[0m                                                                                                                                                                      [0m[27m[24m[Jnguyentung@MacBook-Air-cua-Nguyen script-answers % [K[?2004h[7mdocker run -it ubuntu[27m
+[K[A[51C[27md[27mo[27mc[27mk[27me[27mr[27m [27mr[27mu[27mn[27m [27m-[27mi[27mt[27m [27mu[27mb[27mu[27mn[27mt[27mu[1B[K[?2004l
+[?2004h]0;root@075b474f0fef: /root@075b474f0fef:/# [7mmkdir -p /usr/src/app[27m
+[Aroot@075b474f0fef:/# mkdir -p /usr/src/app
+[A
+[?2004l[?2004h]0;root@075b474f0fef: /root@075b474f0fef:/# [K[7mtouch /usr/src/app/index.js[27m
+[Aroot@075b474f0fef:/# touch /usr/src/app/index.js
+[A
+[?2004l[?2004h]0;root@075b474f0fef: /root@075b474f0fef:/# [K[7mexit[27m
+[Aroot@075b474f0fef:/# exit
+[A
+[?2004lexit
+[1m[7m%[27m[1m[0m                                                                                                                                                                      [0m[27m[24m[Jnguyentung@MacBook-Air-cua-Nguyen script-answers % [K[?2004h[7mexit[27m[27me[27mx[27mi[27mt[?2004l
+
+Script done on Mon Mar  4 17:53:16 2024

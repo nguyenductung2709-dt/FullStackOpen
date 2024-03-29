@@ -1,0 +1,11 @@
+services:
+  app:
+    image: todo-frontend
+    build:
+      context: . # The context will pick this directory as the "build context"
+      dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
+    volumes:
+      - ./:/usr/src/app # The path can be relative, so ./ is enough to say "the same location as the docker-compose.yml", this means mount ./ to usr/src/app
+    ports:
+      - 3000:3000
+    container_name: todo-frontend # This will name the container todo-frontend

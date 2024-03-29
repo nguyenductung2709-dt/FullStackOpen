@@ -1,0 +1,10 @@
+POST http://localhost:3000/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5kdDI3MDkwNSIsImlkIjoiNjU4OWFhYjlkNWY4MjI1MGRhY2IzZWVjIiwiaWF0IjoxNzAzNjg1MjAwLCJleHAiOjE3MDM2ODg4MDB9.bhaRmHeRja4syuS9nuwFoKm8fTnhNn7NirwCgCBg4DY
+
+{   
+  "title": "Harry Potter",
+  "author": "J.K.Rowling",
+  "url": "harrypotter",
+  "likes": 1000
+}

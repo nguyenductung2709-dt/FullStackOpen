@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+    bloglist-frontend:
+      image: bloglist-frontend
+      build:
+        context: ./bloglist-frontend
+        dockerfile: Dockerfile
+      volumes:
+        - ./bloglist-frontend:/usr/src/app
+      container_name: bloglist-frontend
+
+    mongo:
+      image: mongo
+      ports:
+      - 3456:27017
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: example
+        MONGO_INITDB_DATABASE: the_database
+
+      volumes:
+        - ./bloglist-backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+        - mongo_data:/data/db
+
+    todo-backend:
+      image: bloglist-backend
+      build:
+        context: ./bloglist-backend
+        dockerfile: Dockerfile
+      volumes:
+        - ./bloglist-backend:/usr/src/app
+      environment: 
+        - MONGO_URL=mongodb://the_username:the_password@mongo:27017/the_database
+      depends_on:
+        - mongo
+      container_name: bloglist-backend
+
+    nginx:
+      image: nginx:1.20.1
+      volumes:
+        - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      ports:
+        - 8080:80
+      container_name: reverse_proxy_bloglist
+      depends_on:
+        - bloglist-frontend # wait for the frontend container to be started
+        - bloglist-backend
+
+volumes:
+  mongo_data:
