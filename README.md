@@ -1,4 +1,4 @@
-# University of Helsinki - Full Stack Open - 2021/22
+# University of Helsinki - Full Stack Open - 2023/2024
 ## About the course
 This course will introduce you to modern JavaScript-based web development. The main focus is on building single page applications with ReactJS that use REST APIs built with Node.js.
 This course cover various topics in full stack web development. 
