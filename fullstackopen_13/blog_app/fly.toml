@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for blog-app-fso13 on 2024-03-26T19:09:03+02:00
+# fly.toml app configuration file generated for blog-app-tung-dt on 2024-04-04T22:14:34+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'blog-app-fso13'
-primary_region = 'ams'
+app = 'blog-app-tung-dt'
+primary_region = 'arn'
 
 [build]
 
@@ -17,4 +17,6 @@ primary_region = 'ams'
   processes = ['app']
 
 [[vm]]
-  size = 'shared-cpu-1x'
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
